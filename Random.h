@@ -11,6 +11,8 @@ public:
 	double get_uniform_double(double lower_bound, double upper_bound);
 	int get_uniform_int(int lower_bound, int upper_bound);
 	double get_normal_double(double stddev, double mean);
+	vector<double> random_vector_normal(int size, double stddev, double mean);
+	vector<double> random_vector_uniform(int size, double min, double max);
 
 	/// <summary>
 	/// Reorders the given vector randomly
@@ -56,10 +58,9 @@ vector<t> Random::random_choices(const vector<t>& elements, vector<double> proba
 	vector<pair<double, t>> probs_elements(elements.size());
 	for (size_t i = 0; i < elements.size(); i++)
 		probs_elements[i] = { probabilities[i],elements[i] };
+
 	sort(probs_elements.begin(), probs_elements.end(),
-		[](const pair<double, t>& lhs, const pair<double, t>& rhs) {
-			return lhs.first < rhs.first;
-		});
+		[](const pair<double, t>& lhs, const pair<double, t>& rhs) {return lhs.first < rhs.first;});
 
 	for (size_t i = 0; i < count; i++)
 	{

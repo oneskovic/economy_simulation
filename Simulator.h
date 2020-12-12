@@ -28,7 +28,6 @@ public:
 	vector<double> ideas_noise(const vector<double>& ideas);
 	double revenue(double idea_value, double investment);
 private:
-	vector<double> random_vector(int size, double stddev, double mean);
 	vector<double> total_money_history;
 	vector<Company> companies;
 	double total_money;

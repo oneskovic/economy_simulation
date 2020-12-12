@@ -44,26 +44,18 @@ vector<double> operator+(const vector<double>& lhs, const vector<double>& rhs)
 	return result;
 }
 
-vector<double> Simulator::random_vector(int size, double stddev, double mean)
-{
-	vector<double> elements(size);
-	for (size_t i = 0; i < size; i++)
-		elements[i] = rng.get_normal_double(stddev, mean);
-	return elements;
-}
-
 vector<double> Simulator::generate_ideas(int count)
 {
 	double mean = 0.5;
 	double standard_deviation = 0.1;
-	auto ideas = random_vector(count, standard_deviation, mean);
+	auto ideas = rng.random_vector_normal(count, standard_deviation, mean);
 	return ideas;
 }
 
 vector<double> Simulator::ideas_noise(const vector<double>& ideas)
 {
 	double mean = 0, standard_deviation = 0.4;
-	auto noise = random_vector(ideas.size(), standard_deviation, mean);
+	auto noise = rng.random_vector_normal(ideas.size(), standard_deviation, mean);
 	vector<double> idea_perceptions = ideas + noise;
 	for (size_t i = 0; i < idea_perceptions.size(); i++)
 	{

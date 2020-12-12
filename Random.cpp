@@ -44,3 +44,19 @@ double Random::get_normal_double(double stddev, double mean)
 	return real_normal_distributions[parameters](mersenne_twister);
 }
 
+vector<double> Random::random_vector_normal(int size, double stddev, double mean)
+{
+	vector<double> elements(size);
+	for (size_t i = 0; i < size; i++)
+		elements[i] = get_normal_double(stddev, mean);
+	return elements;
+}
+
+vector<double> Random::random_vector_uniform(int size, double min, double max)
+{
+	vector<double> elements(size);
+	for (size_t i = 0; i < size; i++)
+		elements[i] = get_uniform_double(min, max);
+	return elements;
+}
+
